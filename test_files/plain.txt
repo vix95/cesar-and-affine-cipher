@@ -1,1 +1,1 @@
-To jest plik z tekstem jawnym.
+This is a plain text file.
