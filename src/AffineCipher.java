@@ -16,7 +16,7 @@ class AffineCipher {
         this.b = b;
     }
 
-    public int getM() {
+    int getM() {
         return m;
     }
 

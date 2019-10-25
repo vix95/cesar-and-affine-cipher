@@ -15,7 +15,7 @@ class CaesarCipher {
         this.key = key;
     }
 
-    public int getM() {
+    int getM() {
         return m;
     }
 

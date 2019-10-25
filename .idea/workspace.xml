@@ -4,17 +4,8 @@
     <list default="true" id="ddcaade2-bd84-45c8-80b5-7d4d4ef13814" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/cezar/AffineCipher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cezar/AffineCipher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cezar/Caesar.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cezar/Caesar.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cezar/CaesarCipher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cezar/CaesarCipher.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cezar/CaesarMenu.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cezar/CaesarMenu.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AffineCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AffineCipher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Caesar.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/Caesar.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CaesarCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaesarCipher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/CaesarMenu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaesarMenu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_files/crypto.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/crypto.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_files/decrypt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/decrypt.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_files/key-new.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/key-new.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_files/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/key.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
