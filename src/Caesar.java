@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.Scanner;
 
+// unrecognized key and factor doesn't have impact on files
+// files will keep previous values
 public class Caesar {
     private static String path = System.getProperty("user.dir") + "/test_files";
     private static CaesarMenu caesarMenu;
@@ -64,9 +66,8 @@ public class Caesar {
             int key = Integer.parseInt(scanner.nextLine().split(" ")[0]);
             if (key < 0) {
                 caesarMenu.printWrongKey();
-            }
-
-            return key; // only integer
+                return null;
+            } else return key; // only positive integer
         } catch (Exception e) {
             caesarMenu.printWrongKey();
             return null;
@@ -77,7 +78,11 @@ public class Caesar {
         Scanner scanner = new Scanner(new File(path + "/key.txt"));
 
         try {
-            return Integer.parseInt(scanner.nextLine().split(" ")[1]); // only integer
+            int factor = Integer.parseInt(scanner.nextLine().split(" ")[1]);
+            if (factor < 0) {
+                caesarMenu.printWrongFactor();
+                return null;
+            } else return factor; // only positive integer
         } catch (Exception e) {
             caesarMenu.printWrongFactor();
             return null;

@@ -33,22 +33,24 @@ class AffineCipher {
     }
 
     void encryptFile(String path) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/crypto.txt"));
-        Scanner scanner = new Scanner(new File(path + "/plain.txt"));
+        if (this.a != null && this.b != null) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/crypto.txt"));
+            Scanner scanner = new Scanner(new File(path + "/plain.txt"));
 
-        while (scanner.hasNextLine()) {
-            char[] line = scanner.nextLine().toCharArray();
-            char[] encrypted_line = this.encrypt(line);
+            while (scanner.hasNextLine()) {
+                char[] line = scanner.nextLine().toCharArray();
+                char[] encrypted_line = this.encrypt(line);
 
-            System.out.println("plain line: " + String.valueOf(line));
-            System.out.println("encrypted line: " + String.valueOf(encrypted_line) + "\n");
+                System.out.println("plain line: " + String.valueOf(line));
+                System.out.println("encrypted line: " + String.valueOf(encrypted_line) + "\n");
 
-            writer.write(encrypted_line);
-            writer.write('\n');
+                writer.write(encrypted_line);
+                writer.write('\n');
+            }
+
+            writer.close();
+            scanner.close();
         }
-
-        writer.close();
-        scanner.close();
     }
 
     // e(x) = a^(-1) * (x - b) mod m
@@ -73,22 +75,24 @@ class AffineCipher {
     }
 
     void decryptFile(String path) throws IOException {
-        BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/decrypt.txt"));
-        Scanner scanner = new Scanner(new File(path + "/crypto.txt"));
+        if (this.a != null && this.b != null) {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path + "/decrypt.txt"));
+            Scanner scanner = new Scanner(new File(path + "/crypto.txt"));
 
-        while (scanner.hasNextLine()) {
-            char[] line = scanner.nextLine().toCharArray();
-            char[] decrypted_line = decrypt(line);
+            while (scanner.hasNextLine()) {
+                char[] line = scanner.nextLine().toCharArray();
+                char[] decrypted_line = decrypt(line);
 
-            System.out.println("encrypted line: " + String.valueOf(line));
-            System.out.println("decrypted line: " + String.valueOf(decrypted_line) + "\n");
+                System.out.println("encrypted line: " + String.valueOf(line));
+                System.out.println("decrypted line: " + String.valueOf(decrypted_line) + "\n");
 
-            writer.write(decrypted_line);
-            writer.write('\n');
+                writer.write(decrypted_line);
+                writer.write('\n');
+            }
+
+            writer.close();
+            scanner.close();
         }
-
-        writer.close();
-        scanner.close();
     }
 
     // greatest common factor
@@ -105,42 +109,49 @@ class AffineCipher {
         char[] template = scannerExtra.nextLine().toCharArray();
         boolean found_key = false;
 
-        while (scanner.hasNextLine()) {
-            char[] line = scanner.nextLine().toCharArray();
-            char[] decrypted_line = new char[0];
+        if (template.length > 2) {
+            while (scanner.hasNextLine()) {
+                char[] line = scanner.nextLine().toCharArray();
+                char[] decrypted_line = new char[0];
 
-            // find the key
-            for (int a = 1; a < this.m; a++) {
-                if (gcf(a, this.m) == 1) { // check coprime between a factor and m
-                    this.a = a;
-                    for (int b = 0; b < this.m; b++) {
-                        this.b = b;
-                        decrypted_line = this.decrypt(line);
+                // find the key
+                if (!found_key) {
+                    for (int a = 1; a < this.m; a++) {
+                        if (gcf(a, this.m) == 1) { // check coprime between a factor and m
+                            this.a = a;
+                            for (int b = 0; b < this.m; b++) {
+                                this.b = b;
+                                decrypted_line = this.decrypt(line);
 
-                        if (String.valueOf(decrypted_line).contains(String.valueOf(template))) {
-                            found_key = true;
-                            System.out.println("Found key: a = " + this.a + ", b = " + this.b);
-                            writerKey.write(this.a + " " + this.b);
-                            writerKey.close();
-                            break;
+                                if (String.valueOf(decrypted_line).contains(String.valueOf(template))) {
+                                    found_key = true;
+                                    System.out.println("Found key: a = " + this.a + ", b = " + this.b);
+                                    writerKey.write(this.a.toString() + " " + this.b.toString());
+                                    writerKey.close();
+                                    writer.write(decrypted_line);
+                                    writer.write('\n');
+                                    break;
+                                }
+                            }
                         }
+
+                        if (found_key) break;
                     }
+                } else {
+                    decrypted_line = this.decrypt(line);
+                    writer.write(decrypted_line);
+                    writer.write('\n');
                 }
 
-                if (found_key) break;
+                if (found_key) {
+                    System.out.println("encrypted line: " + String.valueOf(line));
+                    System.out.println("decrypted line: " + String.valueOf(decrypted_line) + "\n");
+                } else {
+                    System.out.println("Error: finding the key is impossible");
+                    break;
+                }
             }
-
-            if (found_key) {
-                System.out.println("encrypted line: " + String.valueOf(line));
-                System.out.println("decrypted line: " + String.valueOf(decrypted_line) + "\n");
-
-                writer.write(decrypted_line);
-                writer.write('\n');
-            } else {
-                System.out.println("Error: finding the key is impossible");
-                break;
-            }
-        }
+        } else System.out.println("Error: finding the key is impossible");
 
         writer.close();
         scanner.close();
