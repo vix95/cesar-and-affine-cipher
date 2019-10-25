@@ -1,10 +1,12 @@
 import java.io.*;
+import java.util.Arrays;
 import java.util.Scanner;
 
-class CesarCipher {
+class CaesarCipher {
+    private final int m = 26; // chars qty
     private Integer key;
 
-    CesarCipher(Integer key) {
+    CaesarCipher(Integer key) {
         this.key = key;
     }
 
@@ -19,13 +21,16 @@ class CesarCipher {
 
             for (int i = 0; i < line.length; i++) {
                 if (Character.isUpperCase(line[i])) {
-                    encrypted_line[i] = (char) ((line[i] + key - 65) % 26 + 65);
+                    encrypted_line[i] = (char) ((line[i] + key - 'A') % m + 'A');
                 } else if (Character.isLowerCase(line[i])) {
-                    encrypted_line[i] = (char) ((line[i] + key - 97) % 26 + 97);
+                    encrypted_line[i] = (char) ((line[i] + key - 'a') % m + 'a');
                 } else {
                     encrypted_line[i] = line[i];
                 }
             }
+
+            System.out.println("plain line: " + String.valueOf(line));
+            System.out.println("encrypted line: " + String.valueOf(encrypted_line));
 
             writer.write(encrypted_line);
             writer.close();
@@ -41,19 +46,22 @@ class CesarCipher {
 
         while (scanner.hasNextLine()) {
             char[] line = scanner.nextLine().toCharArray();
-            char[] encrypted_line = new char[line.length];
+            char[] decrypted_line = new char[line.length];
 
             for (int i = 0; i < line.length; i++) {
                 if (Character.isUpperCase(line[i])) {
-                    encrypted_line[i] = (char) ((line[i] - key - 65) % 26 + 65);
+                    decrypted_line[i] = (char) ((line[i] - key - 'A' + m) % 26 + 'A');
                 } else if (Character.isLowerCase(line[i])) {
-                    encrypted_line[i] = (char) ((line[i] - key - 97) % 26 + 97);
+                    decrypted_line[i] = (char) ((line[i] - key - 'a' + m) % 26 + 'a');
                 } else {
-                    encrypted_line[i] = line[i];
+                    decrypted_line[i] = line[i];
                 }
             }
 
-            writer.write(encrypted_line);
+            System.out.println("encrypted line: " + String.valueOf(line));
+            System.out.println("decrypted line: " + String.valueOf(decrypted_line));
+
+            writer.write(decrypted_line);
             writer.close();
         }
 

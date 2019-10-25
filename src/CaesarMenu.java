@@ -1,5 +1,5 @@
-public class CesarMenu {
-    CesarMenu() {
+public class CaesarMenu {
+    CaesarMenu() {
     }
 
     @Override

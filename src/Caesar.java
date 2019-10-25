@@ -1,12 +1,12 @@
 import java.io.*;
 import java.util.Scanner;
 
-public class Cesar {
+public class Caesar {
     private static String path = System.getProperty("user.dir") + "/test_files";
 
     public static void main(String[] args) {
-        CesarMenu cesarMenu = new CesarMenu();
-        System.out.println(cesarMenu.toString());
+        CaesarMenu caesarMenu = new CaesarMenu();
+        System.out.println(caesarMenu.toString());
 
         try {
             String cmd;
@@ -18,14 +18,20 @@ public class Cesar {
 
                 if (arg1.equals("-e") || arg2.equals("-e")) {
                     if (arg1.equals("-c") || arg2.equals("-c")) {
-                        CesarCipher cesarCipher = new CesarCipher(readKey(path));
-                        cesarCipher.encrypt(path);
+                        CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                        caesarCipher.encrypt(path);
                     } else if (arg1.equals("-a") || arg2.equals("-a")) {
                         AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
                         affineCipher.encrypt(path);
                     }
                 } else if (arg1.equals("-d") || arg2.equals("-d")) {
-
+                    if (arg1.equals("-c") || arg2.equals("-c")) {
+                        CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                        caesarCipher.decrypt(path);
+                    } else if (arg1.equals("-a") || arg2.equals("-a")) {
+                        AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
+                        affineCipher.decrypt(path);
+                    }
                 } else if (arg1.equals("j") || arg2.equals("-j")) {
 
                 } else if (arg1.equals("-k") || arg2.equals("-k")) {
