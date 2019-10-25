@@ -3,66 +3,83 @@ import java.util.Scanner;
 
 public class Caesar {
     private static String path = System.getProperty("user.dir") + "/test_files";
+    private static CaesarMenu caesarMenu;
 
     public static void main(String[] args) {
-        CaesarMenu caesarMenu = new CaesarMenu();
+        caesarMenu = new CaesarMenu();
         System.out.println(caesarMenu.toString());
 
         try {
             String cmd;
             do {
-                BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-                cmd = bufferedReader.readLine();
-                String arg1 = cmd.split(" ")[0];
-                String arg2 = cmd.split(" ")[1];
+                cmd = caesarMenu.readInput();
+                if (cmd != null && !cmd.equals("-q")) {
+                    String arg1 = cmd.split(" ")[0];
+                    String arg2 = cmd.split(" ")[1];
 
-                if (arg1.equals("-e") || arg2.equals("-e")) {
-                    if (arg1.equals("-c") || arg2.equals("-c")) {
-                        CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
-                        caesarCipher.encrypt(path);
-                    } else if (arg1.equals("-a") || arg2.equals("-a")) {
-                        AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
-                        affineCipher.encrypt(path);
+                    if (arg1.equals("-e") || arg2.equals("-e")) {
+                        if (arg1.equals("-c") || arg2.equals("-c")) {
+                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                            caesarCipher.encryptFile(path);
+                        } else if (arg1.equals("-a") || arg2.equals("-a")) {
+                            AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
+                            affineCipher.encryptFile(path);
+                        }
+                    } else if (arg1.equals("-d") || arg2.equals("-d")) {
+                        if (arg1.equals("-c") || arg2.equals("-c")) {
+                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                            caesarCipher.decryptFile(path);
+                        } else if (arg1.equals("-a") || arg2.equals("-a")) {
+                            AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
+                            affineCipher.decryptFile(path);
+                        }
+                    } else if (arg1.equals("-j") || arg2.equals("-j")) {
+                        if (arg1.equals("-c") || arg2.equals("-c")) {
+                            CaesarCipher caesarCipher = new CaesarCipher();
+                            caesarCipher.decryptFileExtra(path);
+                        } else if (arg1.equals("-a") || arg2.equals("-a")) {
+                            AffineCipher affineCipher = new AffineCipher();
+                            affineCipher.decryptFileExtra(path);
+                        }
+                    } else if (arg1.equals("-k") || arg2.equals("-k")) {
+                        if (arg1.equals("-c") || arg2.equals("-c")) {
+                            CaesarCipher caesarCipher = new CaesarCipher();
+                            caesarCipher.decryptBruteForce(path);
+                        } else if (arg1.equals("-a") || arg2.equals("-a")) {
+                            AffineCipher affineCipher = new AffineCipher();
+                            affineCipher.decryptBruteForce(path);
+                        }
                     }
-                } else if (arg1.equals("-d") || arg2.equals("-d")) {
-                    if (arg1.equals("-c") || arg2.equals("-c")) {
-                        CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
-                        caesarCipher.decrypt(path);
-                    } else if (arg1.equals("-a") || arg2.equals("-a")) {
-                        AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
-                        affineCipher.decrypt(path);
-                    }
-                } else if (arg1.equals("j") || arg2.equals("-j")) {
-
-                } else if (arg1.equals("-k") || arg2.equals("-k")) {
-
                 }
-            } while (!cmd.equals("-q"));
+            } while (cmd == null || !cmd.equals("-q"));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     private static Integer readKey(String path) throws FileNotFoundException {
-        File file = new File(path + "/key.txt");
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = new Scanner(new File(path + "/key.txt"));
 
         try {
-            return Integer.parseInt(scanner.nextLine().split(" ")[0]); // only integer
+            int key = Integer.parseInt(scanner.nextLine().split(" ")[0]);
+            if (key < 0) {
+                caesarMenu.printWrongKey();
+            }
+
+            return key; // only integer
         } catch (Exception e) {
-            System.out.println("Error: unrecognized key, the key must be a number");
+            caesarMenu.printWrongKey();
             return null;
         }
     }
 
     private static Integer readFactor(String path) throws FileNotFoundException {
-        File file = new File(path + "/key.txt");
-        Scanner scanner = new Scanner(file);
+        Scanner scanner = new Scanner(new File(path + "/key.txt"));
 
         try {
             return Integer.parseInt(scanner.nextLine().split(" ")[1]); // only integer
         } catch (Exception e) {
-            System.out.println("Error: unrecognized factor, the factor must be a number");
+            caesarMenu.printWrongFactor();
             return null;
         }
     }
