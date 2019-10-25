@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="ddcaade2-bd84-45c8-80b5-7d4d4ef13814" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/out/production/cezar/AffineCipher.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/cezar/AffineCipher.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/AffineCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/AffineCipher.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/CaesarCipher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/CaesarCipher.java" afterDir="false" />
     </list>
