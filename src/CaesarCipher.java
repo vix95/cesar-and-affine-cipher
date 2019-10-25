@@ -15,6 +15,10 @@ class CaesarCipher {
         this.key = key;
     }
 
+    public int getM() {
+        return m;
+    }
+
     private char[] encrypt(char[] line) {
         char[] encrypted_line = new char[line.length];
         for (int i = 0; i < line.length; i++) {

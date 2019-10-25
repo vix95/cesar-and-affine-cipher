@@ -21,18 +21,18 @@ public class Caesar {
 
                     if (arg1.equals("-e") || arg2.equals("-e")) {
                         if (arg1.equals("-c") || arg2.equals("-c")) {
-                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path, "-c"));
                             caesarCipher.encryptFile(path);
                         } else if (arg1.equals("-a") || arg2.equals("-a")) {
-                            AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
+                            AffineCipher affineCipher = new AffineCipher(readKey(path, "-a"), readFactor(path));
                             affineCipher.encryptFile(path);
                         }
                     } else if (arg1.equals("-d") || arg2.equals("-d")) {
                         if (arg1.equals("-c") || arg2.equals("-c")) {
-                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path));
+                            CaesarCipher caesarCipher = new CaesarCipher(readKey(path, "-c"));
                             caesarCipher.decryptFile(path);
                         } else if (arg1.equals("-a") || arg2.equals("-a")) {
-                            AffineCipher affineCipher = new AffineCipher(readKey(path), readFactor(path));
+                            AffineCipher affineCipher = new AffineCipher(readKey(path, "-a"), readFactor(path));
                             affineCipher.decryptFile(path);
                         }
                     } else if (arg1.equals("-j") || arg2.equals("-j")) {
@@ -59,12 +59,18 @@ public class Caesar {
         }
     }
 
-    private static Integer readKey(String path) throws FileNotFoundException {
+    private static Integer readKey(String path, String cipher) throws FileNotFoundException {
         Scanner scanner = new Scanner(new File(path + "/key.txt"));
 
         try {
             int key = Integer.parseInt(scanner.nextLine().split(" ")[0]);
-            if (key < 0) {
+            if (key < 1) {
+                caesarMenu.printWrongKey();
+                return null;
+            } else if (cipher.equals("-c") && key > new CaesarCipher().getM() - 1) {
+                caesarMenu.printWrongKey();
+                return null;
+            } else if (cipher.equals("-a") && key > new AffineCipher().getM() - 1) {
                 caesarMenu.printWrongKey();
                 return null;
             } else return key; // only positive integer

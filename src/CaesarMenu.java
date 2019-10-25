@@ -36,11 +36,11 @@ public class CaesarMenu {
     }
 
     void printWrongKey() {
-        System.out.println("Error: unrecognized key, the key must be a positive number");
+        System.out.println("Error: unrecognized key, the key must be a positive number and meet the requirements");
     }
 
     void printWrongFactor() {
-        System.out.println("Error: unrecognized factor, the factor must be a positive number");
+        System.out.println("Error: unrecognized factor, the factor must be a positive number and meet the requirements");
     }
 
     @Override

@@ -16,6 +16,10 @@ class AffineCipher {
         this.b = b;
     }
 
+    public int getM() {
+        return m;
+    }
+
     // e(x) = (ax + b) mod m
     private char[] encrypt(char[] line) {
         char[] encrypted_line = new char[line.length];

@@ -15,7 +15,6 @@
       <change beforePath="$PROJECT_DIR$/test_files/decrypt.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/decrypt.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_files/key-new.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/key-new.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/test_files/key.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/key.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/test_files/plain.txt" beforeDir="false" afterPath="$PROJECT_DIR$/test_files/plain.txt" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -108,17 +107,6 @@
         </entry>
       </map>
     </option>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/CaesarMenu.java</url>
-          <line>15</line>
-          <option name="timeStamp" value="31" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
   <component name="masterDetails">
     <states>
