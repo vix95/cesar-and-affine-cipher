@@ -9,7 +9,7 @@ szyfr Cezara: E(k,x)=x+k (mod 26), D(k,y)=y-k (mod 26), klucz k jest liczbą z z
 
 szyfr afiniczny: E(a,b,x)=a*x+b (mod 26), D(a,b,y)=a'*(y-b) (mod 26) gdzie klucz jest parą liczb (a,b) takich, że NWD(a,26)=1 oraz a*a'=1 (mod 26).
 
-Zadanie:
+**Zadanie:**
 Zaprogramować szyfrowanie i odszyfrowywanie wiadomości przy użyciu szyfru Cezara i szyfru afinicznego.
 
 Program o nazwie cezar powinien umożliwiać wywołanie z linijki rozkazowej z następującymi opcjami:
@@ -38,7 +38,7 @@ Program łamiący szyfr z pomocą tekstu jawnego czyta tekst zaszyfrowany, tekst
 
 Program łamiący szyfr bez pomocy tekstu jawnego czyta jedynie tekst zaszyfrowany i zapisuje jako tekst jawny wszystkie możliwe kandydatury (25 dla szyfru Cezara, 312 dla szyfru afinicznego).
 
-Technologia:
+**Technologia:**
 Program może być napisany w dowolnym języku programowania (C, C++, C#, Java, python, ruby, awk, bash, php, perl, pascal, scala, tcl, assembler, lisp, scheme, haskell, smalltalk, prolog, ...) pod warunkiem spełnienia powyższych warunków. (Mogę ustąpić, jeśli zajdzie wyższa konieczność, np. przygotowanie odpowiedniego arkusza Excela.)
 
 Rozwiązanie powinno obejmować źródła programu, ew. wersja skompilowana jest opcjonalna (choć pożądana, gdy np. przygotowano program w Javie w środowisku Windows), oraz przykładowy tekst jawny, zaszyfrowany i poprawny klucz dla szyfru afinicznego. Przesyłać należy pakiet tar lub zip.
